@@ -1,0 +1,17 @@
+{
+  "name": "@kma-vote/core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-redis": "^7.1.1",
+    "express-session": "^1.18.0",
+    "ioredis": "^5.3.2"
+  }
+}
