@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "client:build": "pnpm -r run build --filter {apps/client}",
+    "client:build": "pnpm -r --filter {apps/client} run build ",
     "client:dev": "pnpm -r run dev --filter {apps/client}",
     "build": "pnpm run client:build && nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
