@@ -63,7 +63,7 @@ export class Election extends BaseEntity {
   @ApiProperty()
   public endDate: Date;
 
-  @Column({ nullable: false })
+  @Column('varchar', { nullable: false })
   @ApiProperty()
   public status: ElectionStatus;
 

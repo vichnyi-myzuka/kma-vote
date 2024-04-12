@@ -1,0 +1,21 @@
+@import "@app/client/styles/colors.scss";
+
+.linkButton {
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  padding: 20px 28px;
+  text-align: center;
+  background: $blue;
+  font-family: "FixelDisplay", sans-serif;
+  line-height: 1;
+  transition: opacity 0.3s ease;
+  &:hover {
+    opacity: 0.8;
+  }
+  &.large {
+    font-size: 18px;
+  }
+}

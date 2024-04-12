@@ -11,14 +11,17 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { Request, Response } from 'express';
-import * as passport from 'passport';
-import { User } from '@libs/core/database/entities';
 import { UseGuards } from '@nestjs/common';
-import { UserGuard, UserRequest, AuthService } from '@libs/core/auth';
+import type { Request, Response } from 'express';
+import * as passport from 'passport';
+
+import { User } from '@libs/core/database/entities';
+import { UserGuard } from '@libs/core/auth';
+import type { UserRequest } from '@libs/core/auth';
 import env from '@libs/core/utils/env';
 import { Role } from '@libs/core/database/enums';
 import { UserOutputDto } from '@libs/core/dto';
+import { AuthService } from './auth.service';
 
 @ApiTags('Auth')
 @UseInterceptors(ClassSerializerInterceptor)

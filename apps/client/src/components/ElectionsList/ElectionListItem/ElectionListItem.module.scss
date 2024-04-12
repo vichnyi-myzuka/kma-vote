@@ -1,0 +1,35 @@
+.item {
+  flex-direction: row;
+  align-items: center;
+  &Link {
+    font-size: 13px;
+    max-width: 480px;
+  }
+
+  &Chip {
+    align-self: flex-start;
+  }
+
+  &Info {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &Actions {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  &Chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &Cell {
+    height: 54px;
+  }
+}

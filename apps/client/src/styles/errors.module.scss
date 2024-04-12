@@ -1,0 +1,33 @@
+@import "./fonts.scss";
+@import "./colors.scss";
+
+.container {
+  width: 100%;
+  padding-top: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  & * {
+    margin: 0;
+  }
+  .code {
+    text-align: center;
+    font-size: 128px;
+    @include default_font;
+    color: $blue;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .text {
+    width: 340px;
+    text-align: center;
+    font-size: 18px;
+    @include default_font;
+  }
+  .returnButtonContainer {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+  }
+}

@@ -1,0 +1,41 @@
+.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.showing {
+  opacity: 1;
+}
+
+.shown {
+  display: block;
+}
+
+.hiding {
+  animation: onHide 0.2s forwards;
+}
+
+@keyframes onShow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes onHide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.loader {
+  position: fixed;
+  z-index: 9999999;
+}
+
+

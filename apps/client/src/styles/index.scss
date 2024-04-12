@@ -1,0 +1,33 @@
+@use "sass:meta";
+@use "colors.scss" as colors;
+@use "variables.scss" as variables;
+
+@mixin add-css-variables($module) {
+  :root {
+    @each $name, $value in $module {
+      --#{$name}: #{$value};
+  }
+}
+}
+$colors: meta.module-variables('colors');
+$variables: meta.module-variables('variables');
+
+// Usages
+@include add-css-variables($colors);
+@include add-css-variables($variables);
+@import "fonts";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  overflow-x: hidden!important;
+  overflow-y: auto!important;
+  padding-right: 0!important;
+  width: 100vw;
+  @include default_font;
+}
+

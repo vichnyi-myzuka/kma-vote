@@ -1,0 +1,28 @@
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.introContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  margin-top: 20px;
+  .introTitle {
+    margin: 0;
+    margin-bottom: 16px;
+    font-size: 36px;
+    font-family: "FixelDisplay", sans-serif;
+  }
+  .introText {
+    margin: 0;
+    margin-bottom: 16px;
+    max-width: 540px;
+    font-size: 18px;
+    line-height: 1.5;
+    font-family: "FixelDisplay", sans-serif;
+  }
+  .introButtonContainer {
+    margin-top: 36px;
+  }
+}

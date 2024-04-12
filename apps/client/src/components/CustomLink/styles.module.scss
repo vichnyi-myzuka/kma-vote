@@ -1,0 +1,14 @@
+@import "@app/client/styles/fonts.scss";
+
+.customLink {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--blue);
+  @include default_font;
+  text-underline-offset: 4px;
+  &:hover {
+    text-decoration: underline;
+  }
+}

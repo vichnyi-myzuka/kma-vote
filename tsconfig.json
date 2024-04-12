@@ -29,7 +29,25 @@
       ],
       "@libs/configs/*": [
         "libs/configs/src/*"
-      ]
+      ],
+      "@app/client": [
+        "apps/client/src"
+      ],
+      "@app/client/*": [
+        "apps/client/src/*"
+      ],
+      "@app/kma-vote": [
+        "apps/kma-vote/src"
+      ],
+      "@app/kma-vote/*": [
+        "apps/kma-vote/src/*"
+      ],
+      "@app/sync": [
+        "apps/sync/src"
+      ],
+      "@app/sync/*": [
+        "apps/sync/src/*"
+      ],
     }
   }
 }

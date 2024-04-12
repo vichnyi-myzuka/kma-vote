@@ -10,7 +10,7 @@ const config: DataSourceOptions = {
   username: env.string('POSTGRES_USERNAME', 'root'),
   password: env.string('POSTGRES_PASSWORD', ''),
   database: env.string('POSTGRES_DATABASE'),
-  synchronize: env.bool('POSTGRES_SYNCHRONIZE', false),
+  synchronize: env.bool('POSTGRES_SYNCHRONIZE', true),
   logging: env.bool('POSTGRES_LOGGING', false),
   migrationsRun: true,
   extra: {
