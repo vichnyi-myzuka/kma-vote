@@ -5,7 +5,7 @@ import { UserNullable } from '../storage';
 
 export async function getMe(): Promise<User | null> {
   try {
-    return (await axios.get(`${process.env.DOMAIN}/auth/me`)).data;
+    return (await axios.get(`/auth/me`)).data;
   } catch (e) {
     return null;
   }

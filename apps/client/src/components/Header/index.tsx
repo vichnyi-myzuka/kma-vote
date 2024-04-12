@@ -26,9 +26,7 @@ function Header() {
 
           <p className={styles.userName}>{user?.username}</p>
           <div className={styles.logOutContainer}>
-            <CustomLink href={`${process.env.DOMAIN}/auth/logout`}>
-              Вийти
-            </CustomLink>
+            <CustomLink href={`/auth/logout`}>Вийти</CustomLink>
           </div>
         </>
       )}
