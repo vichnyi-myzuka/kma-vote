@@ -19,6 +19,7 @@ const config: IOIDCStrategyOption = {
   responseMode: 'form_post',
   loggingLevel: 'warn',
   scope: ['openid', 'email', 'profile'],
+  cookieSameSite: true,
 };
 
 export default config;

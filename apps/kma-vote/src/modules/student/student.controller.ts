@@ -23,8 +23,8 @@ export class StudentController {
   constructor(private readonly service: StudentService) {}
 
   @Get('search')
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async search(
     @Query() { name, take, skip },
   ): Promise<{ data: BaseStudentOutputDto[]; total: number }> {
@@ -38,22 +38,22 @@ export class StudentController {
   }
 
   @Get()
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async findAll(@Query() { take, skip }): Promise<BaseStudent[]> {
     return this.service.findAll(take, skip);
   }
 
   @Get(':id')
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async findOne(@Param('cdoc') cdoc: number): Promise<BaseStudent> {
     return this.service.findOne(cdoc);
   }
 
   @Delete(':id')
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async delete(@Param('cdoc') cdoc: number): Promise<BaseStudent> {
     return this.service.delete(cdoc);
   }

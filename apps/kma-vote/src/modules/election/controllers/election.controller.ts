@@ -35,8 +35,8 @@ export class ElectionController {
   constructor(private readonly electionService: ElectionService) {}
 
   @Post()
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async create(
     @Body() electionData: ElectionDataDto,
   ): Promise<Election> {
@@ -44,7 +44,7 @@ export class ElectionController {
   }
 
   @Get()
-  // @UseGuards(UserGuard)
+  @UseGuards(UserGuard)
   public async findAll(
     @Req() req: UserRequest,
     @Query() { take, skip, filter },
@@ -53,7 +53,7 @@ export class ElectionController {
   }
 
   @Get('/available')
-  // @UseGuards(UserGuard)
+  @UseGuards(UserGuard)
   public async findAllAvailable(
     @Req() req: UserRequest,
     @Query() { take, skip },
@@ -62,7 +62,7 @@ export class ElectionController {
   }
 
   @Get('/voted')
-  // @UseGuards(UserGuard)
+  @UseGuards(UserGuard)
   public async getVotedElections(
     @Req() req: UserRequest,
     @Query() { take, skip },
@@ -71,7 +71,7 @@ export class ElectionController {
   }
 
   @Get(':id')
-  // @UseGuards(UserGuard)
+  @UseGuards(UserGuard)
   public async findOne(
     @Req() req: UserRequest,
     @Param('id') id: number,
@@ -80,7 +80,7 @@ export class ElectionController {
   }
 
   @Get(':id/students')
-  // @UseGuards(UserGuard)
+  @UseGuards(UserGuard)
   public async findSelectedStudents(
     @Req() req: UserRequest,
     @Param('id') id: number,
@@ -89,7 +89,7 @@ export class ElectionController {
   }
 
   @Get('/slug/:slug')
-  // @UseGuards(UserGuard)
+  @UseGuards(UserGuard)
   public async findByName(
     @Req() req: UserRequest,
     @Param('slug') slug: string,
@@ -98,13 +98,13 @@ export class ElectionController {
   }
 
   @Get(':id/results')
-  // @UseGuards(UserGuard)
+  @UseGuards(UserGuard)
   public async getResults(@Param('id') id: number): Promise<ElectionResult[]> {
     return this.electionService.getElectionResults(id);
   }
 
   @Get(':id/can-vote')
-  // @UseGuards(UserGuard)
+  @UseGuards(UserGuard)
   public async canVote(
     @Req() req: UserRequest,
     @Param('id') id: number,
@@ -113,29 +113,29 @@ export class ElectionController {
   }
 
   @Delete(':id')
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async delete(@Param('id') id: number): Promise<Election> {
     return this.electionService.delete(id);
   }
 
   @Post('/hide/:id')
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async hide(@Param('id') id: number): Promise<Election> {
     return this.electionService.hide(id);
   }
 
   @Post('/show/:id')
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async show(@Param('id') id: number): Promise<Election> {
     return this.electionService.show(id);
   }
 
   @Patch(':id')
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async update(
     @Param('id') id: number,
     @Body() electionDataDto: ElectionDataDto,
@@ -144,36 +144,36 @@ export class ElectionController {
   }
 
   @Post('/start/:id')
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async start(@Param('id') id: number): Promise<Election> {
     return this.electionService.start(id);
   }
 
   @Post('/complete/:id')
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async complete(@Param('id') id: number): Promise<Election> {
     return this.electionService.complete(id);
   }
 
   @Post('/cancel/:id')
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async cancel(@Param('id') id: number): Promise<Election> {
     return this.electionService.cancel(id);
   }
 
   @Post('/pause/:id')
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async pause(@Param('id') id: number): Promise<Election> {
     return this.electionService.pause(id);
   }
 
   @Post('/resume/:id')
-  // @UseGuards(UserGuard)
-  // @Roles(Role.Admin)
+  @UseGuards(UserGuard)
+  @Roles(Role.Admin)
   public async resume(@Param('id') id: number): Promise<Election> {
     return this.electionService.resume(id);
   }
