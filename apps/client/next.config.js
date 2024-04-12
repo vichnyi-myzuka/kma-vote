@@ -6,6 +6,9 @@ const nextConfig = {
   env: {
     DOMAIN: process.env.DOMAIN,
   },
+  images: {
+    unoptimized: true,
+  },
   trailingSlash: true,
   webpack: (config) => {
     config.module.rules.push({
