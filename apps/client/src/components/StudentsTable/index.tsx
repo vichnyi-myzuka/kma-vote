@@ -28,7 +28,7 @@ export function useStudents(paginationModel: PaginationModel, name: string) {
       setLoading(true);
       const {
         data: { data, total },
-      } = await axios.get(`${process.env.DOMAIN}/api/student/search`, {
+      } = await axios.get(`/api/student/search`, {
         params: {
           skip: paginationModel.page * paginationModel.pageSize,
           take: paginationModel.pageSize,

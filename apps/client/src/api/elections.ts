@@ -22,7 +22,7 @@ export const getAllElections = async (
   filter?: ElectionsFilterModel,
 ): Promise<{ data: Election[]; total: number }> => {
   return (
-    await axios.get(`${process.env.DOMAIN}/api/election`, {
+    await axios.get(`/api/election`, {
       params: {
         take,
         skip,
@@ -33,31 +33,27 @@ export const getAllElections = async (
 };
 
 export const hideElection = async (id: number): Promise<Election> => {
-  return (await axios.post(`${process.env.DOMAIN}/api/election/hide/${id}`))
-    .data;
+  return (await axios.post(`/api/election/hide/${id}`)).data;
 };
 
 export const showElection = async (id: number): Promise<Election> => {
-  return (await axios.post(`${process.env.DOMAIN}/api/election/show/${id}`))
-    .data;
+  return (await axios.post(`/api/election/show/${id}`)).data;
 };
 
 export const deleteElection = async (id: number): Promise<void> => {
-  await axios.delete(`${process.env.DOMAIN}/api/election/${id}`);
+  await axios.delete(`/api/election/${id}`);
 };
 
 export const getElectionBySlug = async (
   slug: string,
 ): Promise<{ election: Election; isVoted: boolean }> => {
-  return (await axios.get(`${process.env.DOMAIN}/api/election/slug/${slug}`))
-    .data;
+  return (await axios.get(`/api/election/slug/${slug}`)).data;
 };
 
 export const getSelectedStudentsByElectionId = async (
   id: number,
 ): Promise<BaseStudent[]> => {
-  return (await axios.get(`${process.env.DOMAIN}/api/election/${id}/students`))
-    .data;
+  return (await axios.get(`/api/election/${id}/students`)).data;
 };
 
 export const updateElection = async (
@@ -65,36 +61,28 @@ export const updateElection = async (
   updateElectionDataDto: UpdateElectionDataDto,
 ): Promise<Election> => {
   return (
-    await axios.patch(
-      `${process.env.DOMAIN}/api/election/${electionId}`,
-      updateElectionDataDto,
-    )
+    await axios.patch(`/api/election/${electionId}`, updateElectionDataDto)
   ).data;
 };
 
 export const startElection = async (id: number): Promise<Election> => {
-  return (await axios.post(`${process.env.DOMAIN}/api/election/start/${id}`))
-    .data;
+  return (await axios.post(`/api/election/start/${id}`)).data;
 };
 
 export const cancelElection = async (id: number): Promise<Election> => {
-  return (await axios.post(`${process.env.DOMAIN}/api/election/cancel/${id}`))
-    .data;
+  return (await axios.post(`/api/election/cancel/${id}`)).data;
 };
 
 export const completeElection = async (id: number): Promise<Election> => {
-  return (await axios.post(`${process.env.DOMAIN}/api/election/complete/${id}`))
-    .data;
+  return (await axios.post(`/api/election/complete/${id}`)).data;
 };
 
 export const pauseElection = async (id: number): Promise<Election> => {
-  return (await axios.post(`${process.env.DOMAIN}/api/election/pause/${id}`))
-    .data;
+  return (await axios.post(`/api/election/pause/${id}`)).data;
 };
 
 export const resumeElection = async (id: number): Promise<Election> => {
-  return (await axios.post(`${process.env.DOMAIN}/api/election/resume/${id}`))
-    .data;
+  return (await axios.post(`/api/election/resume/${id}`)).data;
 };
 
 export const getAllAvailableElections = async (
@@ -102,7 +90,7 @@ export const getAllAvailableElections = async (
   skip: number,
 ): Promise<{ data: Election[]; total: number }> => {
   return (
-    await axios.get(`${process.env.DOMAIN}/api/election/available`, {
+    await axios.get(`/api/election/available`, {
       params: {
         take,
         skip,
@@ -116,7 +104,7 @@ export const getVotedElections = async (
   skip: number,
 ): Promise<{ data: Election[]; total: number }> => {
   return (
-    await axios.get(`${process.env.DOMAIN}/api/election/voted`, {
+    await axios.get(`/api/election/voted`, {
       params: {
         take,
         skip,
@@ -128,21 +116,17 @@ export const getVotedElections = async (
 export const getElectionProgress = async (
   id: number,
 ): Promise<ElectionOptionProgressDto[]> => {
-  return (
-    await axios.get(`${process.env.DOMAIN}/api/votes/election-progress/${id}`)
-  ).data;
+  return (await axios.get(`/api/votes/election-progress/${id}`)).data;
 };
 
 export const getElectionResults = async (
   id: number,
 ): Promise<ElectionResult[]> => {
-  return (await axios.get(`${process.env.DOMAIN}/api/election/${id}/results`))
-    .data;
+  return (await axios.get(`/api/election/${id}/results`)).data;
 };
 
 export const getCanVote = async (id: number): Promise<boolean> => {
-  return (await axios.get(`${process.env.DOMAIN}/api/election/${id}/can-vote`))
-    .data;
+  return (await axios.get(`/api/election/${id}/can-vote`)).data;
 };
 
 export const voteForStudents = async (
@@ -150,7 +134,7 @@ export const voteForStudents = async (
   options: ElectionOption[],
 ): Promise<Vote> => {
   return (
-    await axios.post(`${process.env.DOMAIN}/api/votes/vote/${id}`, {
+    await axios.post(`/api/votes/vote/${id}`, {
       options,
     })
   ).data;
@@ -170,9 +154,7 @@ export async function loadAllFilterOptions(
       specialties,
       degreeLevels,
       degreeYears,
-    }: FilterOptionsData = (
-      await axios.get(`${process.env.DOMAIN}/api/filterOptions/`)
-    ).data;
+    }: FilterOptionsData = (await axios.get(`/api/filterOptions/`)).data;
     callback(faculties, specialties, degreeLevels, degreeYears);
   } catch (e) {
     console.log(e);
@@ -180,5 +162,5 @@ export async function loadAllFilterOptions(
 }
 
 export async function createElection(data: ElectionDataDto) {
-  return axios.post(`${process.env.DOMAIN}/api/election/`, data);
+  return axios.post(`/api/election/`, data);
 }

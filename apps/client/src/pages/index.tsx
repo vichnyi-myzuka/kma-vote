@@ -26,7 +26,7 @@ const Home: NextPage = () => {
               вашого акаунта через Microsoft Office 365.
             </p>
             <div className={styles.introButtonContainer}>
-              <LinkButton href={`${process.env.DOMAIN}/auth/ukma`} large>
+              <LinkButton href={`/auth/ukma`} large>
                 Ввійти з Microsoft Office
               </LinkButton>
             </div>
