@@ -2,9 +2,7 @@ import * as env from '@libs/core/utils/env';
 import { IOIDCStrategyOption } from 'passport-azure-ad';
 import { URL } from 'url';
 
-const baseUrl = `https://localhost:${env.number('PORT', 8683)}`;
-
-const redirectUrl: URL = new URL('auth/ukma', baseUrl);
+const redirectUrl: URL = new URL('auth/ukma', env.string('APP_HOST'));
 
 const config: IOIDCStrategyOption = {
   identityMetadata: env.string(
