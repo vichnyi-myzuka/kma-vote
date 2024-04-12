@@ -7,6 +7,9 @@ const options: SessionOptions = {
   secret: env.string('SESSION_SECRET', crypto.randomBytes(64).toString('hex')),
   resave: false,
   saveUninitialized: false,
+  maxAge: 84600 * 1000,
+  secure: true,
+  sameSite: 'none',
 };
 
 if (env.string('NODE_ENV') === 'development') {
