@@ -5,7 +5,7 @@ import Image from 'next/image';
 function Logo() {
   return (
     <a className={styles.logo} href={config.routes.elections.path}>
-      <Image src="/logo.svg" alt="KMA Vote Logo" />
+      <img src="/logo.svg" alt="KMA Vote Logo" />
     </a>
   );
 }
