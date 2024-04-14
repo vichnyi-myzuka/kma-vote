@@ -42,16 +42,16 @@ export class ElectionService {
     filter: string,
   ): Promise<{ data: Election[]; total: number }> {
     const user = userRequest?.user;
-    //
-    // if (!user) {
-    //   throw new HttpException(
-    //     {
-    //       status: HttpStatus.UNAUTHORIZED,
-    //       message: 'Необхідно авторизуватись!',
-    //     },
-    //     HttpStatus.UNAUTHORIZED,
-    //   );
-    // }
+
+    if (!user) {
+      throw new HttpException(
+        {
+          status: HttpStatus.UNAUTHORIZED,
+          message: 'Необхідно авторизуватись!',
+        },
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
 
     const { status } = JSON.parse(filter) as ElectionsFilterModel;
     const [data, total] = await this.electionRepository.findAndCount({
@@ -60,7 +60,7 @@ export class ElectionService {
       order: { startDate: 'DESC', endDate: 'DESC', status: 'ASC' },
       where: {
         status,
-        // hide: user.roles.includes(Role.Admin) ? undefined : false,
+        hide: user.roles.includes(Role.Admin) ? undefined : false,
       },
     });
     return { data, total };
@@ -460,15 +460,15 @@ export class ElectionService {
 
     console.log(userRequest.user);
 
-    // if (!userRequest?.user.roles.includes(Role.Admin) && election.hide) {
-    //   throw new HttpException(
-    //     {
-    //       status: HttpStatus.FORBIDDEN,
-    //       message: 'Голосування приховано!',
-    //     },
-    //     HttpStatus.FORBIDDEN,
-    //   );
-    // }
+    if (!userRequest?.user.roles.includes(Role.Admin) && election.hide) {
+      throw new HttpException(
+        {
+          status: HttpStatus.FORBIDDEN,
+          message: 'Голосування приховано!',
+        },
+        HttpStatus.FORBIDDEN,
+      );
+    }
 
     const isVoted = !!(await this.voteRepository.findOne({
       where: {

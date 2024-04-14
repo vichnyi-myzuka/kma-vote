@@ -21,11 +21,9 @@ import {
   Election,
   ElectionResult,
 } from '@libs/core/database/entities';
-import { UpdateElectionDto, ElectionDataDto } from '@libs/core/dto';
+import { ElectionDataDto } from '@libs/core/dto';
 import { Roles } from '@libs/core/auth/decorators';
 import { Role } from '@libs/core/database/enums';
-import { ElectionsFilterModel } from '@libs/core/database/types';
-import { UpdateElectionDataDto } from '@libs/core/dto';
 import type { UserRequest } from '@libs/core/auth/types';
 
 @ApiTags('Election')

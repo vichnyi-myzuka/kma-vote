@@ -7,6 +7,7 @@ import { APP_GUARD } from '@nestjs/core';
 import options from '@libs/configs/database/postgre.options';
 import { RolesGuard } from '@libs/core/auth/guards';
 import * as ModulesList from '@app/kma-vote/modules';
+import { ScheduleModule } from '@nestjs/schedule';
 
 console.log('Typeorm settings:', options);
 @Module({
@@ -21,6 +22,7 @@ console.log('Typeorm settings:', options);
       },
     }),
     ...Object.values(ModulesList),
+    ScheduleModule.forRoot(),
   ],
   providers: [
     {

@@ -21,5 +21,6 @@ import * as services from './services';
   ],
   providers: [...Object.values(services)],
   controllers: [...Object.values(controllers)],
+  exports: [services.ElectionService],
 })
 export class ElectionModule {}

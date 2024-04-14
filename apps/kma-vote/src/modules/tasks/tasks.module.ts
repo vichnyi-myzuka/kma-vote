@@ -10,6 +10,7 @@ import {
   Vote,
 } from '@libs/core/database/entities';
 import { TasksService } from './tasks.service';
+import { ElectionService } from '@app/kma-vote/modules/election/services';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { TasksService } from './tasks.service';
       'main',
     ),
   ],
-  providers: [TasksService],
+  providers: [TasksService, ElectionService],
   controllers: [],
 })
 export class TasksModule {}
