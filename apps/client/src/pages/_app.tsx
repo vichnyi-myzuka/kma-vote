@@ -30,11 +30,9 @@ function MyApp({ Component, pageProps, router }: CustomAppProps) {
 
   useEffect(() => {
     const start = () => {
-      console.log('start');
       setLoading(true);
     };
     const end = () => {
-      console.log('end');
       setLoading(false);
     };
     router.events.on('routeChangeStart', start);

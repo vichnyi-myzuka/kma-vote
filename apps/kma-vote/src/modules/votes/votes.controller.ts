@@ -40,4 +40,10 @@ export class VotesController {
   ): Promise<Vote> {
     return this.votesService.voteForStudents(req, id, voteData.options);
   }
+
+  @Get('/user-votes/:id')
+  @UseGuards(UserGuard)
+  public async getUserVotes(@Req() req: UserRequest, @Param('id') id: number) {
+    return this.votesService.getUserVotes(req, id);
+  }
 }

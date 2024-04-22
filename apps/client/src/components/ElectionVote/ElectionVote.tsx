@@ -20,7 +20,6 @@ import { Election, ElectionOption } from '@libs/core/database/entities';
 
 // Client
 import { voteForStudents } from '@app/client/api/elections';
-import { useElectionProgress } from '@app/client/hooks/elections';
 import Typography from '@app/client/components/Typography';
 
 export interface ElectionVoteProps {
@@ -28,7 +27,6 @@ export interface ElectionVoteProps {
 }
 export default function ElectionVote({ election }: ElectionVoteProps) {
   const { minSelectedOptions, maxSelectedOptions } = election;
-  const { progress } = useElectionProgress(election.id);
   const [selectedOptions, setSelectedOptions] = useState<ElectionOption[]>([]);
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
@@ -106,71 +104,73 @@ export default function ElectionVote({ election }: ElectionVoteProps) {
               </TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {progress.map((progressEntry) => (
-              <TableRow
-                key={progressEntry.option.id}
-                sx={{
-                  '&:last-child td, &:last-child th': { border: 0 },
-                  '&': {
-                    cursor: 'pointer',
-                    transition: 'opacity 0.3s ease',
-                  },
-                  '&:hover': {
-                    opacity: 0.7,
-                  },
-                }}
-                onClick={() => {
-                  onCheckboxClick(progressEntry.option);
-                }}
-              >
-                <TableCell
-                  component="th"
-                  scope="row"
+          {election.options && (
+            <TableBody>
+              {election.options.map((option) => (
+                <TableRow
+                  key={option.id}
                   sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    flexWrap: 'nowrap',
-                    whiteSpace: 'nowrap',
+                    '&:last-child td, &:last-child th': { border: 0 },
+                    '&': {
+                      cursor: 'pointer',
+                      transition: 'opacity 0.3s ease',
+                    },
+                    '&:hover': {
+                      opacity: 0.7,
+                    },
+                  }}
+                  onClick={() => {
+                    onCheckboxClick(option);
                   }}
                 >
-                  <Checkbox
-                    checked={checked(progressEntry.option)}
-                    disabled={disabled(progressEntry.option)}
+                  <TableCell
+                    component="th"
+                    scope="row"
                     sx={{
-                      padding: '0',
-                      marginRight: '8px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      flexWrap: 'nowrap',
+                      whiteSpace: 'nowrap',
                     }}
-                  />{' '}
-                  {progressEntry.option.student.name}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    whiteSpace: 'nowrap',
-                  }}
-                  align="right"
-                >
-                  {progressEntry.option.student.facultyname}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    whiteSpace: 'nowrap',
-                  }}
-                  align="right"
-                >
-                  {progressEntry.option.student.spec}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    whiteSpace: 'nowrap',
-                  }}
-                  align="right"
-                >
-                  {progressEntry.option.student.year}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
+                  >
+                    <Checkbox
+                      checked={checked(option)}
+                      disabled={disabled(option)}
+                      sx={{
+                        padding: '0',
+                        marginRight: '8px',
+                      }}
+                    />{' '}
+                    {option.student.name}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      whiteSpace: 'nowrap',
+                    }}
+                    align="right"
+                  >
+                    {option.student.facultyname}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      whiteSpace: 'nowrap',
+                    }}
+                    align="right"
+                  >
+                    {option.student.spec}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      whiteSpace: 'nowrap',
+                    }}
+                    align="right"
+                  >
+                    {option.student.year}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          )}
         </Table>
       </TableContainer>
       <LoadingButton

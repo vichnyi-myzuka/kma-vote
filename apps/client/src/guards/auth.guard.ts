@@ -6,7 +6,6 @@ export async function updateAuth(
   failureCallback: () => void,
 ) {
   const user = await getMe();
-  console.log('user', user);
   setUser(user);
   if (!user) {
     failureCallback();

@@ -138,4 +138,27 @@ export class VotesService {
 
     return this.voteRepository.save(vote);
   }
+
+  public async getUserVotes(
+    userRequest: UserRequest,
+    electionId: number,
+  ): Promise<Vote[]> {
+    return this.voteRepository.find({
+      where: {
+        user: {
+          id: userRequest.user.id,
+        },
+        options: {
+          election: {
+            id: electionId,
+          },
+        },
+      },
+      relations: {
+        options: {
+          student: true,
+        },
+      },
+    });
+  }
 }

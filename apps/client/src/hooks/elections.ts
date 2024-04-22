@@ -4,9 +4,14 @@ import {
   getElectionProgress,
   getElectionResults,
   getSelectedStudentsByElectionId,
+  getUserVotesForElection,
 } from '@app/client/api';
 import { ElectionOptionProgressDto } from '@libs/core/dto';
-import { BaseStudent, ElectionResult } from '@libs/core/database/entities';
+import {
+  BaseStudent,
+  ElectionResult,
+  Vote,
+} from '@libs/core/database/entities';
 
 export const useElectionSelectedStudents = (
   id: number,
@@ -101,4 +106,33 @@ export const useCanVote = (
   }, [electionId]);
 
   return { canVote, loading, fetchCanVote };
+};
+
+export const useUserElectionVotes = (
+  electionId: number,
+): {
+  votes: Vote[];
+  loading: boolean;
+  fetchVotes: () => Promise<void>;
+} => {
+  const [votes, setVotes] = useState<Vote[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const fetchVotes = async () => {
+    setLoading(true);
+    try {
+      const votes = await getUserVotesForElection(electionId);
+      setVotes(votes);
+      setLoading(false);
+    } catch (e) {
+      console.error(e);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchVotes();
+  }, [electionId]);
+
+  return { votes, loading, fetchVotes };
 };

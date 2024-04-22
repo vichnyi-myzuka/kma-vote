@@ -164,3 +164,9 @@ export async function loadAllFilterOptions(
 export async function createElection(data: ElectionDataDto) {
   return axios.post(`/api/election/`, data);
 }
+
+export async function getUserVotesForElection(
+  electionId: number,
+): Promise<Vote[]> {
+  return (await axios.get(`/api/votes/user-votes/${electionId}`)).data;
+}

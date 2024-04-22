@@ -432,6 +432,11 @@ export class ElectionService {
   ): Promise<{ election: Election; isVoted: boolean }> {
     const election = await this.electionRepository.findOne({
       where: { urlKey: slug },
+      relations: {
+        options: {
+          student: true,
+        },
+      },
     });
 
     if (!election) {

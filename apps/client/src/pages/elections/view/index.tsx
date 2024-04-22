@@ -18,6 +18,7 @@ import ElectionPageAdminPanel from '@app/client/components/ElectionPageAdminPane
 import ControlledPageLoader from '@app/client/components/PageLoader/ControlledPageLoader';
 import ElectionResults from '@app/client/components/ElectionResults';
 import ElectionVote from '@app/client/components/ElectionVote';
+import VotedOptions from '@app/client/components/VotedOptions';
 
 export default function ElectionPage() {
   const router = useRouter();
@@ -26,6 +27,7 @@ export default function ElectionPage() {
   const [isVoted, setIsVoted] = useState<boolean>(false);
   const [election, setElection] = useState<Election | undefined>();
   const { enqueueSnackbar } = useSnackbar();
+
   const updateElection = async (): Promise<void> => {
     setIsLoading(true);
     if (router.query.name) {
@@ -79,7 +81,6 @@ export default function ElectionPage() {
   const { canVote } = useCanVote(election?.id);
 
   useEffect(() => {
-    console.log('root effect');
     const timer = setTimeout(async () => {
       const name = router.query.name;
       if (!name) {
@@ -123,6 +124,7 @@ export default function ElectionPage() {
               onElectionUpdate={updateElection}
             />
           ) : null}
+          {!!election && isVoted && <VotedOptions electionId={election.id} />}
           {!!election && election.status === ElectionStatus.COMPLETED && (
             <ElectionResults election={election} />
           )}
