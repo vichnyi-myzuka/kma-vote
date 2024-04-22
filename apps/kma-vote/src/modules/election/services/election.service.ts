@@ -204,7 +204,7 @@ export class ElectionService {
     });
     if (existingElection) {
       throw new HttpException(
-        { message: 'Таке голосування вже існує!' },
+        { message: 'Голосування з таким URL вже існує!' },
         HttpStatus.BAD_REQUEST,
       );
     }
