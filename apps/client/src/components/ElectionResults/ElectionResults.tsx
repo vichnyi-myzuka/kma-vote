@@ -139,7 +139,8 @@ export default function ElectionResults({ election }: ElectionResultsProps) {
                   }}
                   align="right"
                 >
-                  {(result.votes / (allVotes || 1)) * 100}% ({result.votes})
+                  {((result.votes / (allVotes || 1)) * 100).toFixed(2)}% (
+                  {result.votes})
                 </TableCell>
               </TableRow>
             ))}
