@@ -49,10 +49,7 @@ export class SyncProcessor extends WorkerHost {
 
     console.log(job.id + ' ' + JSON.stringify(job.data) + ' is processing');
     do {
-      currentResults = await query
-        .andWhere('Student.status = 1')
-        .offset(this.currentOffset)
-        .getMany();
+      currentResults = await query.offset(this.currentOffset).getMany();
       console.log('Current offset is ' + this.currentOffset);
       this.currentOffset += this.STUDENTS_LIMIT;
       if (currentResults.length > 0) {
