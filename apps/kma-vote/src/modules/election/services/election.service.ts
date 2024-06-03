@@ -166,6 +166,7 @@ export class ElectionService {
       degreeYear.length &&
       !degreeYear.includes(Number.parseInt(student.year))
     ) {
+      console.log(degreeYear, student.year);
       throwForbidden('Курс не співпадає!');
     }
 
