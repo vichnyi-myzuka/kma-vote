@@ -162,10 +162,7 @@ export class ElectionService {
       throwForbidden('Рівень навчання не співпадає!');
     }
 
-    if (
-      degreeYear.length &&
-      !degreeYear.includes(Number.parseInt(student.year))
-    ) {
+    if (degreeYear.length && !degreeYear.includes(student.year)) {
       console.log(degreeYear, student.year);
       throwForbidden('Курс не співпадає!');
     }

@@ -21,7 +21,7 @@ export class StudentFilter {
   @ApiProperty()
   @IsNumber()
   @IsOptional()
-  degreeYear?: number[];
+  degreeYear?: string[];
 
   static getAllProperties(): Record<string, string> {
     return {
