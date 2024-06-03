@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "client:build": "pnpm -r --filter {apps/client} run build ",
+    "client:build": "pnpm -r --filter {apps/client} run build",
     "client:dev": "pnpm -r run dev --filter {apps/client}",
     "build": "pnpm run client:build && nest build",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
@@ -76,5 +76,6 @@
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.2.0",
     "typescript": "^5.0.0"
-  }
+  },
+  "packageManager": "pnpm@8.14.2"
 }

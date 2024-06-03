@@ -144,33 +144,33 @@ export class ElectionService {
 
     const { facultyName, specialtyName, degreeYear, degreeLevel } =
       election.accessScenarioParams.student;
-    const throwForbidden = () => {
+    const throwForbidden = (reason: string) => {
       throw new HttpException(
         {
           status: HttpStatus.FORBIDDEN,
-          message: 'Студент не має доступу до голосування!',
+          message: `Студент не має доступу до голосування! ${reason}`,
         },
         HttpStatus.FORBIDDEN,
       );
     };
 
     if (facultyName && facultyName !== student.facultyname) {
-      throwForbidden();
+      throwForbidden('Факультет не співпадає!');
     }
 
     if (degreeLevel && degreeLevel !== student.level) {
-      throwForbidden();
+      throwForbidden('Рівень навчання не співпадає!');
     }
 
     if (
       degreeYear.length &&
       !degreeYear.includes(Number.parseInt(student.year))
     ) {
-      throwForbidden();
+      throwForbidden('Курс не співпадає!');
     }
 
     if (specialtyName.length && !specialtyName.includes(student.spec)) {
-      throwForbidden();
+      throwForbidden('Спеціальність не співпадає!');
     }
 
     // Check if student has already voted
