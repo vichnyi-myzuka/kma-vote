@@ -121,7 +121,7 @@ export default function ElectionForm({
   const [degreeLevel, setDegreeLevel] = useState<string>(
     defaultValue?.accessScenarioParams?.degreeLevel ?? '',
   );
-  const [degreeYear, setDegreeYear] = useState<number[]>(
+  const [degreeYear, setDegreeYear] = useState<string[]>(
     defaultValue?.accessScenarioParams?.degreeYear ?? [],
   );
 
@@ -421,7 +421,7 @@ export default function ElectionForm({
                   multiple: true,
                   disabled: !degreeLevel,
                   value: degreeYear,
-                  onChange: getSelectHandler((value: number[]) => {
+                  onChange: getSelectHandler((value: string[]) => {
                     setDegreeYear(value);
                   }),
                 }}
